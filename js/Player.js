@@ -4,7 +4,6 @@ class Player {
         this.distance = 0;
         this.name = null;
         this.score =0;
-        
     }
 
     getCount() {
@@ -35,4 +34,6 @@ class Player {
             allPlayers = data.val();
         })
     }
+
+    
 }

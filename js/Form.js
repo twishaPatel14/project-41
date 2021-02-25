@@ -4,7 +4,7 @@ class Form{
        this.button = createButton('Play');
        this.greeting = createElement('h2');
        this.title = createElement('h2');
-       this.reset=createButton('reset');
+       this.reset = createButton('Reset');
     }
     hide() {
         this.greeting.hide();
@@ -29,7 +29,7 @@ class Form{
         this.reset.style('width', '100px');
         this.reset.style('height', '30px');
         this.reset.style('background', 'lightpink');
-        
+
         this.button.mousePressed(() => {
             this.input.hide();
             this.button.hide();
@@ -44,5 +44,12 @@ class Form{
             this.greeting.style('font-size', '100px');
         });
 
+
+        // Make reset button reset the values in the database
+        this.reset.mousePressed(( )=>{
+            player.updateCount(0);
+            game.update(0);
+        });        
+        
     }
 }

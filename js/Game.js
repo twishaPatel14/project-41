@@ -16,23 +16,23 @@ class Game{
         });
     }
     async start() {
-            if (gameState === 0) {
-                player = new Player();
-                var playerCountRef = await database.ref('playerCount').once("value");
-                if (playerCountRef.exists()) {
-                    playerCount = playerCountRef.val();
-                    player.getCount();
-                }
-                form = new Form()
-                form.display();
+        if (gameState === 0) {
+            player = new Player();
+            var playerCountRef = await database.ref('playerCount').once("value");
+            if (playerCountRef.exists()) {
+                playerCount = playerCountRef.val();
+                player.getCount();
             }
-    player1 = createSprite(200,500);
-    player1.addImage("player1",player_img);
-    
-    player2 = createSprite(800,500);
-    player2.addImage("player2", player_img);
-    players=[player1,player2];
+            form = new Form()
+            form.display();
         }
+        player1 = createSprite(200,500);
+        player1.addImage("player1",player_img);
+        
+        player2 = createSprite(800,500);
+        player2.addImage("player2", player_img);
+        players=[player1,player2];
+    }
     
     play(){
         
@@ -100,8 +100,6 @@ class Game{
             
         }
 
-        // Add code to destroy fruits, calculate scores and
-        // update the scores to the database
         if (player.index !== null){
             for (var i = 0; i< fruitGroup.length; i++){
                 if (fruitGroup.get(i).isTouching(players)){
@@ -114,18 +112,20 @@ class Game{
 
     
 
-       
+       if(player.score>= 10){
+           this.end()
+       }
 
 
 
     }
 
     end(){
-
-       // Add code to update game state and display Game Over
-
-
+      game.update(2);
+clear();
+fill("blue")
+textSize(40);
+text("game Over",350,300);
        
     }
 }
-
